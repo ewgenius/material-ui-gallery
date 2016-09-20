@@ -5,9 +5,12 @@ import * as configureTapEvent from 'react-tap-event-plugin'
 
 import {MuiThemeProvider, getMuiTheme} from 'material-ui/styles'
 
-configureTapEvent()
-
 const container = document.querySelector('#root')
+
+
+// init material ui
+
+configureTapEvent()
 
 const theme = getMuiTheme({
   appBar: {
