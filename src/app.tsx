@@ -1,21 +1,30 @@
 import '../styles/main.scss'
 import * as React from 'react'
 import {render} from 'react-dom'
+import {createStore, combineReducers} from 'redux'
+import {Provider} from 'react-redux'
 import * as configureTapEvent from 'react-tap-event-plugin'
 
+import {showAlert} from './actions/ui.ts'
+import ui from './reducers/ui.ts'
 import {MuiThemeProvider, getMuiTheme} from 'material-ui/styles'
 
 import Appshell from './components/AppShell/AppShell.tsx'
 
 const container = document.querySelector('#root')
 
+// init store
+const store = createStore(combineReducers({
+  ui
+}))
+
 // init sw
 
 function updateReady(worker) {
   console.log('update is ready')
-  /*store.dispatch(showAlert('New version is ready', 'reload', () => {
+  store.dispatch(showAlert('New version is ready', 'reload', () => {
     worker.postMessage({ action: 'skipWaiting' })
-  }))*/
+  }))
 }
 
 function trackInstalling(worker) {
@@ -67,6 +76,8 @@ const theme = getMuiTheme({
   }
 })
 
-render(<MuiThemeProvider muiTheme={theme}>
-  <Appshell />
-</MuiThemeProvider>, container)
+render(<Provider store={store}>
+  <MuiThemeProvider muiTheme={theme}>
+    <Appshell />
+  </MuiThemeProvider>
+</Provider>, container)
