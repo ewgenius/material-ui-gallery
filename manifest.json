@@ -1,6 +1,6 @@
 {
-  "name": "material-ui-gallery",
-  "short_name": "material-ui-gallery",
+  "name": "material ui gallery",
+  "short_name": "material ui gallery",
   "description": "material-ui gallery pwa",
   "start_url": "/",
   "display": "standalone",
