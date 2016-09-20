@@ -5,6 +5,8 @@ import * as configureTapEvent from 'react-tap-event-plugin'
 
 import {MuiThemeProvider, getMuiTheme} from 'material-ui/styles'
 
+import Appshell from './components/AppShell/AppShell.tsx'
+
 const container = document.querySelector('#root')
 
 // init sw
@@ -66,5 +68,5 @@ const theme = getMuiTheme({
 })
 
 render(<MuiThemeProvider muiTheme={theme}>
-  <div>app</div>
+  <Appshell />
 </MuiThemeProvider>, container)
