@@ -4,8 +4,8 @@
   "description": "material-ui gallery pwa",
   "start_url": "/",
   "display": "standalone",
-  "theme_color": "#fff",
-  "background_color": "#fff",
+  "theme_color": "#00bcd4",
+  "background_color": "#00bcd4",
   "icons": [
     {
       "src": "/assets/icon.png",
