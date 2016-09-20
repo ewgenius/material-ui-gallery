@@ -4,6 +4,7 @@ import {render} from 'react-dom'
 import {createStore, combineReducers} from 'redux'
 import {Provider} from 'react-redux'
 import * as configureTapEvent from 'react-tap-event-plugin'
+import worker from './services/worker.ts'
 
 import {showAlert} from './actions/ui.ts'
 import ui from './reducers/ui.ts'
@@ -34,37 +35,7 @@ function trackInstalling(worker) {
   })
 }
 
-if ('serviceWorker' in navigator) {
-  const serviceWorker = navigator['serviceWorker']
-
-  serviceWorker.register('/sw.js')
-    .then(reg => {
-      if (!serviceWorker.controller) {
-        return
-      }
-
-      if (reg.waiting) {
-        updateReady(reg.waiting)
-        return
-      }
-
-      if (reg.installing) {
-        trackInstalling(reg.installing)
-        return
-      }
-
-      reg.addEventListener('updatefound', () => {
-        trackInstalling(reg.installing)
-      })
-    })
-
-  let refreshing = false
-  serviceWorker.addEventListener('controllerchange', () => {
-    if (refreshing) return
-    window.location.reload()
-    refreshing = true
-  })
-}
+worker(updateReady, trackInstalling)
 
 // init material ui
 
